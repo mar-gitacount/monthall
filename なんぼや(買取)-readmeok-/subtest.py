@@ -1,0 +1,18 @@
+import subprocess
+
+# 任意の値をnumに代入
+
+num =354
+
+# numが整数であるか確認
+if isinstance(num, int):
+    
+    process = subprocess.run(["python", "webdriver2.py", str(num)])
+    if process.returncode == 0:
+        print(f"子プロセス {num} は正常に終了しました。")
+    else:
+        print(
+            f"子プロセス {num} はエラー終了しました。終了コード: {process.returncode}"
+        )
+else:
+    print("Error: num should be an integer.")

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\Users\EIKO\Desktop\Work\docker-nextjs-django-nginx\backend\web-back\companytools\scraipingfilses\kakakukom\scriping.py", line 351, in <module>
+    main()
+  File "C:\Users\EIKO\Desktop\Work\docker-nextjs-django-nginx\backend\web-back\companytools\scraipingfilses\kakakukom\scriping.py", line 124, in main
+    print(element.text)
+UnicodeEncodeError: 'cp932' codec can't encode character '\xa5' in position 444: illegal multibyte sequence

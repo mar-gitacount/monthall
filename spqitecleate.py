@@ -36,7 +36,10 @@ CREATE TABLE IF NOT EXISTS weekly_reports (
 ''')
 
 # 既存のテーブルに新しいカラムを追加
-conn.execute('ALTER TABLE watch_item ADD COLUMN other_data TEXT')
+# conn.execute('ALTER TABLE watch_item ADD COLUMN other_data TEXT')
+# conn.execute('ALTER TABLE watch_item ADD COLUMN useprice INTEGER')
+conn.execute('ALTER TABLE watch_item ADD COLUMN unused_price INTEGER')
+
 # コミット（変更をデータベースに反映させる）
 conn.commit()
 

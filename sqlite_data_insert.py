@@ -136,7 +136,7 @@ class SQLiteDataInsert:
        company_dict = {}
        company_dictindex = 1
        insert_data = {}
-       header = ["リファレンス","年代","モデル名","サイズ","ブレスレット","ダイアル","値段","その他","日付"]
+       header = ["リファレンス","年代","モデル名","サイズ","ブレスレット","ダイアル","値段","その他","日付","URL"]
        headerlen = len(header) - 1 
        for item in rows:
             ref_number = item[1]  # リファレンス番号はタプルの2番目の要素に格納されている
@@ -150,26 +150,48 @@ class SQLiteDataInsert:
                 # before_dict[item[8]] = valuenum 
                 # 各会社の列番号をいれる。
                 # item_array[8]は会社名
-                company_dict[item_array[8]] = company_dictindex 
+                # 会社名を辞書入れ込む
+                company_dict[item_array[8]] = company_dictindex
+                # 中古値段があるかどうか
+                if item_array[12]:
+                    company_dictindex += 1
+                    #会社の辞書配列に中古入れ込む
+                    useprice_with_companiname = item_array[8] + "(中古)"
+                    # 中古列追加する。
+                    company_dict[useprice_with_companiname] = company_dictindex
+                    
+                    
                 company_dictindex += 1
-            # 二回目以降の処理
+            # 二回目以降の処理、会社違い
+            # ここに中古値段の処理を入れ込む？
             if item_array[1] in diffcheckitem:
-                append_array = [""] * 20
+                append_array = [""] * 50
                 # 値段の列を辞書型より抽出する。
                 print(company_dict)
                 price_column = headerlen + company_dict[item_array[8]]
-                print(price_column)
+                print(price_column,"値段の場所")
                 print(company_dict[item_array[8]])
                 append_array[0] = item_array[1]
                 append_array[1] = item_array[2]
                 append_array[2] = item_array[4]
                 append_array[4] = item_array[5]
-                append_array[5] = item_array[6]
-                
-                append_array[7] = item_array[11]
+                append_array[5] = item_array[6]              
+                append_array[7] = item_array[11]          
                 # 日付
                 append_array[8] = item_array[10]
+                 # URL
+                append_array[9] = item_array[7]
+                print(item_array[9],"値段")
                 append_array[price_column] = item_array[9]
+                # 中古の値段
+                if item_array[12]:
+                    # 通常の値段のとなりにいれる
+                    use_price_column  = price_column + 1
+                    append_array[use_price_column] = item_array[12]
+                # 未使用
+                if item_array[13]:
+                    unuse_price_column = price_column + 2
+                    append_array[unuse_price_column] = item_array[13]
                 # 辞書型に配列を追加する。
                 insert_data[item_array[1]].append(append_array)
                 return_All_array.append(append_array)
@@ -178,6 +200,7 @@ class SQLiteDataInsert:
                 print("-------------------")
                 #前の番号と同じなので、値段以外の項目はいらない。 
             # リファレンスがおなじかつ会社違い→最後の配列を取得する。
+            # 以下判定分は使われていないぽいが怖いのでさわらない
             elif item_array[1] in diffcheckitem and not item_array[8] in company_dict:
                 # 会社を追加する。これを参考に、値段の列を設定する。
                 append_array[2] = "会社を追加する。これを参考に、値段の列を設定する。"
@@ -188,10 +211,13 @@ class SQLiteDataInsert:
             else:      
                 # 初めての番号なので、すべての項目を配列に入れ込む。
                 diffcheckitem = item_array[1]        
-                append_array = [""] * 20
+                append_array = [""] * 50
                 # 0番目と7番目の要素を削除して新しい配列を作成
                 # 会社の名前で列番号を検索する。
-                print(item_array)
+                print(item_array,"アイテム一覧")
+                print(item_array[9],"アイテム値段")
+
+
                 print(company_dict)
                 price_column = headerlen + company_dict[item_array[8]]
                 print(price_column)
@@ -210,9 +236,21 @@ class SQLiteDataInsert:
                 append_array[7] = item_array[11]
                 # 日付
                 append_array[8] = item_array[10]
+                # URL
+                append_array[9] = item_array[7]
 
                 # 値段各種
                 append_array[price_column] = item_array[9]
+                # 中古値段判定
+                
+                if item_array[12]:
+                    use_price_column  = price_column + 1    
+                    append_array[use_price_column] = item_array[12]
+                
+                # 未使用の値段
+                if item_array[13]:
+                    unuse_price_column = price_column + 2
+                    append_array[unuse_price_column] = item_array[13]
                 append_array.append(price_column)
                 append_array.append(len(item_array))
                 print(f"会社番号→{company_dict[item_array[8]]}")
@@ -266,7 +304,7 @@ class SQLiteDataInsert:
     #             #  値段のみが入る
     #              return_All_array.append(append_array)
 
-       
+    #    先頭行に会社名を追加している
        for key in company_dict:
         print(key)
         header.append(key)

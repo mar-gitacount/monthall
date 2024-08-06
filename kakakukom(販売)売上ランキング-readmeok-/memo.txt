@@ -1,0 +1,5 @@
+if %errorlevel%==0 (
+    echo Python script completed successfully.
+    goto end
+)
+:end
