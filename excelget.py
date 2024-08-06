@@ -1304,8 +1304,8 @@ def main():
     # watchnianbuy(whocequeryinstance)
     # return
 
-    evence(whocequeryinstance)
-    return
+    # evence(whocequeryinstance)
+    # return
 
     # jwa(whocequeryinstance)
     # return
