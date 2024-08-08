@@ -173,7 +173,8 @@ class SQLiteDataInsert:
                 print(company_dict[item_array[8]])
                 append_array[0] = item_array[1]
                 append_array[1] = item_array[2]
-                append_array[2] = item_array[4]
+                append_array[2] = item_array[3]
+                append_array[3] = item_array[4]
                 append_array[4] = item_array[5]
                 append_array[5] = item_array[6]              
                 append_array[7] = item_array[11]          
@@ -226,8 +227,10 @@ class SQLiteDataInsert:
                 append_array[0] = item_array[1]
                 # 年代
                 append_array[1] = item_array[2]
-                # サイズ
-                append_array[2] = item_array[4]
+                # モデル名
+                append_array[2] = item_array[3]
+                # 年代
+                append_array[3] = item_array[4]
                 # ブレスレット
                 append_array[4] = item_array[5]
                 # ダイアル
@@ -267,6 +270,7 @@ class SQLiteDataInsert:
             for key, value in insert_data.items():
                 print(f"キー: {key}, 値: {value}")
             grouped_data[ref_number].append(item)
+            # エクセルデータをいったん保存する
             
        #結果の出力
        #会社IDが同じ場合、二次元配列にする。
@@ -309,7 +313,6 @@ class SQLiteDataInsert:
         print(key)
         header.append(key)
        return_All_array.insert(0,header)
-
        return return_All_array
         
 

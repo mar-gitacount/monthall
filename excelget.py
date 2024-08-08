@@ -1314,6 +1314,7 @@ def main():
     for data in excel_alldata:
         # print(data,"データ一覧")
         ws.append(data)
+        # wb.save(file_name)
     wb.save(file_name)
 
     return
