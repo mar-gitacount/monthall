@@ -164,7 +164,7 @@ class SQLiteDataInsert:
                 company_dictindex += 1
             # 二回目以降の処理、会社違い
             # ここに中古値段の処理を入れ込む？
-            if item_array[1] in diffcheckitem:
+            if item_array[1] == diffcheckitem:
                 append_array = [""] * 50
                 # 値段の列を辞書型より抽出する。
                 print(company_dict)
@@ -202,6 +202,7 @@ class SQLiteDataInsert:
                 #前の番号と同じなので、値段以外の項目はいらない。 
             # リファレンスがおなじかつ会社違い→最後の配列を取得する。
             # 以下判定分は使われていないぽいが怖いのでさわらない
+            # item_array[1] = リファレンスナンバー item_array = 会社名
             elif item_array[1] in diffcheckitem and not item_array[8] in company_dict:
                 # 会社を追加する。これを参考に、値段の列を設定する。
                 append_array[2] = "会社を追加する。これを参考に、値段の列を設定する。"
