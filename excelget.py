@@ -1065,7 +1065,7 @@ def jwa(instance):
                 # ↓あとで使うやつ
                 # ↓その他アイテム
                 
-                watch_item_instance.insert_data([jwa_make_ID,ref,"","","","","","","JWA",rowitemslist[16],formatted_date,rowitemslist[11],""])
+                watch_item_instance.insert_data([jwa_make_ID,ref,"","","","","","","JWA",rowitemslist[16],formatted_date,rowitemslist[11],"",""])
 
                 # watch_item_instance.fieldcountAllcountcheck()
                 row_data = []
@@ -1134,7 +1134,7 @@ def jba(instance):
                     ref = "NotReference"
                     column_num = 1
                 year = ""
-                model_name = rowitemslist[0]
+                model_name = ""
                 size =""
                 dial = ""
                 bracelet = ""
@@ -1283,8 +1283,8 @@ def main():
     db_file = "bucherer.db"
     # dbのファイルをわたす。
     whocequeryinstance = WhocheSqliteDataInsert(db_file)
-    # jba(whocequeryinstance)
-    # return
+    jba(whocequeryinstance)
+    return
     # nanboya(whocequeryinstance)
     # # return
 
@@ -1294,7 +1294,7 @@ def main():
     # quark(whocequeryinstance)
     # return
 
-    # 月曜日は以下を抽出!!
+    
     # gmt(whocequeryinstance)
     # return
     # wachnianbuy
@@ -1307,8 +1307,8 @@ def main():
     # evence(whocequeryinstance)
     # return
 
-    # jwa(whocequeryinstance)
-    # return
+    jwa(whocequeryinstance)
+    return
     # ここで列を指定する。
     excel_alldata = refdatasget(whocequeryinstance) 
     for data in excel_alldata:

@@ -107,6 +107,7 @@ for section_name , section_data in jsondatas.items():
           
             # price = int(value['price'].replace(',',''))
             price = int(price.replace(',',''))
+            
             # section_name = 日付
             # 日付をdbに保存できる形式にする
             date_obj = datetime.strptime(section_name, '%Y-%m-%d')
