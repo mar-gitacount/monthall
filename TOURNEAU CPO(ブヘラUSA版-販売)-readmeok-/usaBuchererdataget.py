@@ -8,7 +8,8 @@ from datetime import datetime
 # useBucheradataget.py
 # ここに処理をかく
 # !jsonファイルのパス
-BuchererMainDatasjson = "Buchererjson/BuchererMainDatas.json"
+# BuchererMainDatasjson = "Buchererjson/BuchererMainDatas.json"
+BuchererMainDatasjson = "BuchererDatas/BuchererMainDatas.json"
 
 
 # 新しいデータ作成処理
@@ -108,6 +109,7 @@ def main():
                 getaccessurl = item.find("a",class_="rolex-tile--hover").get("href")
                 # ?URL
                 dateilaccessurl = secondacccessurl + getaccessurl
+                print("各アイテムURL",dateilaccessurl)
                 # 各アイテム詳細にアクセスしている。
                 driver.get(dateilaccessurl)
                 datail_page_get = driver.page_source
@@ -118,14 +120,16 @@ def main():
                     model = h_one.find("span",class_="medium-title").text.strip()
                 except Exception as e:
                      model = ""
-                # ?詳細ページの左側
-                left_item = datail_page_get_soup.find("div",class_="watch-specs-left")
-                # ?詳細ページの右側
-                right_item = datail_page_get_soup.find("div",class_="watch-specs-right")
+                try:
+                    # ?詳細ページの左側
+                    left_item = datail_page_get_soup.find("div",class_="watch-specs-left")
+                    # ?詳細ページの右側
+                    right_item = datail_page_get_soup.find("div",class_="watch-specs-right")
             
-                #? 1.アイテムナンバー
-                item_number = left_item.find("div",text="Item Number").find_next_sibling("div", class_="description").text.strip()
-                
+                    #? 1.アイテムナンバー
+                    item_number = left_item.find("div",text="Item Number").find_next_sibling("div", class_="description").text.strip()
+                except Exception as e:
+                    continue
                 # ?8.ブレスレット
                 # ?ダイアル
                 try:

@@ -25,6 +25,7 @@ try:
     from selenium.webdriver.chrome.options import Options
     import sqlitedbdatainsert
     # from dateutil import parser
+    from selenium.webdriver.chrome.options import Options
 except ImportError as e:
     # ImportErrorが発生した場合にモジュールをインストール
     if not moduleuse.install_missing_module(str(e)):
@@ -123,7 +124,9 @@ def main():
     # https://kakaku.com/watch_accessory/watch/itemlist.aspx?pdf_ma=5090
     url = f"https://kakaku.com/watch_accessory/watch/itemlist.aspx?pdf_ma=5090&pdf_so=h1"
     pal = "&pdf_pg="
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless")  # ヘッドレスモードを有効にする
+    driver = webdriver.Chrome(options=options)
     driver.get(url)
     source_page_get =  BeautifulSoup(driver.page_source,"html.parser")
     # BeautifulSoupオブジェクトの作成

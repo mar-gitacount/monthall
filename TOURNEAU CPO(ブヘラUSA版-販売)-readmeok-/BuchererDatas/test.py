@@ -438,7 +438,7 @@ def main():
                 # レート計算
                 # new_index.insert(10,f"=J{last_row+1}*{chf_rate}")
                 # 出入りシートに入れるための値
-                buy_items.append(new_index)
+                sale_items.append(new_index)
                 new_index.insert(10, f'=TEXT(J{last_row + 1}, "¥#,##0") * {chf_rate}')
 
                 new_index.insert(11,0)
@@ -514,11 +514,11 @@ def main():
                 # url
                 new_index.insert(13,itemvalue[8])
                 save_logs_to_file(f"{before_date_price}が{dates[0]}の金額データ",errot_file_name)
-                new_sheet.append(new_index)
+                # new_sheet.append(new_index)
                 # new_index=[""]*len(15)
                 new_index=[""]*15
 
-                indexnum +=1 
+                # indexnum +=1 
 
     
     
@@ -563,7 +563,7 @@ def main():
     week_saleandbuy_sheet_insertvalue.insert(10,f'=SUM(K2:K{week_saleandbuy_sheet_last_row})')
     week_saleandbuy_sheet.append(week_saleandbuy_sheet_insertvalue)
     
-    
+    save_logs_to_file(f"売れた数→{len(buy_items)} 買った数→{len(sale_items)}",errot_file_name)
     # 最初の行を更新する
     week_saleandbuy_sheet_min_row = week_saleandbuy_sheet.max_row+1
     for buy_item in buy_items:
@@ -673,6 +673,8 @@ def main():
 
 
     print(items,"テーブル一覧")
+    print("→は売れた数",buy_items)
+    print("→は入荷した数",sale_items)
     # テーブル数を確認して自動増分する。
     
  

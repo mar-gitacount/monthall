@@ -12,7 +12,8 @@ import os
 import json
 from datetime import datetime
 # JSONファイルのパス
-BuchererMainDatasjson = "Buchererjson/BuchererMainDatas.json"
+# BuchererMainDatasjson = "Buchererjson/BuchererMainDatas.json"
+BuchererMainDatasjson = "BuchererDatas/BuchererMainDatas.json"
 # JSONデータの読み込み
 with open(BuchererMainDatasjson, "r", encoding="utf-8") as file:
     main_json_data = json.load(file)
