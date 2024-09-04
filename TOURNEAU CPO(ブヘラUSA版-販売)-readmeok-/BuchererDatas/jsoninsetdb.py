@@ -131,8 +131,8 @@ for item in masterdata:
     if conut > 0:
         continue
 
-    values = [item, datas["year"], datas["model"], datas["ref"], datas["size"], datas["bracelet"], datas["dial"], datas["url"]]
-    c.execute('''INSERT OR REPLACE INTO watch_item(bucherer_watch_id, year, model_name, size ,ref, bracelet, dial, url) VALUES (?, ?, ?, ?, ?, ?, ?,?)''', (item, datas["year"], datas["model"], datas["ref"], datas["size"], datas["bracelet"], datas["dial"], datas["url"]))
+    values = [item, datas["year"], datas["model"], datas["size"], datas["ref"], datas["bracelet"], datas["dial"], datas["url"]]
+    c.execute('''INSERT OR REPLACE INTO watch_item(bucherer_watch_id, year, model_name, size ,ref, bracelet, dial, url) VALUES (?, ?, ?, ?, ?, ?, ?,?)''', (item, datas["year"], datas["model"], datas["size"], datas["ref"],  datas["bracelet"], datas["dial"], datas["url"]))
 
     conn.commit()
     # print("------")

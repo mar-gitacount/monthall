@@ -787,6 +787,8 @@ def kakakucom(instance):
                 # insert_values = [rowitemslist[10],"",rowitemslist[16],"","","",""]
                 # EVENCEのidはURLの一番下から抽出する。
                 ref = rowitemslist[1]
+                if ref is None:
+                    ref = 0
                 year = ""
                 model_name = rowitemslist[0]
                 size =""
@@ -809,6 +811,8 @@ def kakakucom(instance):
                 
                 
                 # 中古値段
+                print(f"{rowitemslist}データ一覧")
+                print(f"データの数→{len(rowitemslist)}")       
                 use_price = rowitemslist[4]
                 use_price = re.findall(datepattern,str(use_price))
                 if use_price:
@@ -1284,27 +1288,27 @@ def main():
     # dbのファイルをわたす。
     whocequeryinstance = WhocheSqliteDataInsert(db_file)
     jba(whocequeryinstance)
-    return
-    # nanboya(whocequeryinstance)
+    # return
+    nanboya(whocequeryinstance)
     # # return
 
-    # kakakucom(whocequeryinstance)
+    kakakucom(whocequeryinstance)
     # # return
 
-    # quark(whocequeryinstance)
+    quark(whocequeryinstance)
     # return
 
     
-    # gmt(whocequeryinstance)
+    gmt(whocequeryinstance)
     # return
     # wachnianbuy
 
-    # watchniansale(whocequeryinstance)
+    watchniansale(whocequeryinstance)
     # return
-    # watchnianbuy(whocequeryinstance)
+    watchnianbuy(whocequeryinstance)
     # return
 
-    # evence(whocequeryinstance)
+    evence(whocequeryinstance)
     # return
 
     jwa(whocequeryinstance)
